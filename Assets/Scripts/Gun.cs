@@ -5,6 +5,8 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public GameObject Bullet;
+    float fireRate = 0.5f;
+    float nextFire = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,10 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      Instantiate(Bullet,transform.position,transform.rotation);
-    
+      if(Time.time > nextFire)
+        {
+            nextFire = Time.time+fireRate;
+            Instantiate(Bullet, transform.position, transform.rotation);
+        }
     }
 }
